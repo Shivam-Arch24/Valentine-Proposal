@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>For Someone Special ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 42px;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 20px;
+      margin: 15px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+      position: relative;
+    }
+
+    #yes {
+      background-color: #4CAF50;
+      color: white;
+      z-index: 2;
+    }
+
+    #no {
+      background-color: #f44336;
+      color: white;
+      position: absolute;
+      z-index: 2;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1);}
+      100% {transform: translateY(-110vh) scale(1.5);}
+    }
+  </style>
+</head>
+<body>
+
+<h1>Dhanu, will you be my Valentine? 💖</h1>
+
+<button id="yes" onclick="love()">YES 💘</button>
+<button id="no" onmouseover="moveNo()">NO 😜</button>
+
+<script>
+function love() {
+  document.body.innerHTML = "<h1>YAYYY 🥰 You just made me the happiest person alive again❤️</h1>";
+}
+
+// Faster escaping NO button
+let speed = 1;
+
+function moveNo() {
+  const noBtn = document.getElementById("no");
+  speed += 0.5;
+
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+
+  noBtn.style.transition = speed * 0.1 + "s";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+// Floating hearts generator
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
